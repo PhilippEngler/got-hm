@@ -1957,7 +1957,7 @@ export default class Request extends Duplex implements RequestEvents<Request> {
 				// body.
 				if (is.undefined(headers['content-length']) && is.undefined(headers['transfer-encoding'])) {
 					if (!cannotHaveBody && !is.undefined(uploadBodySize)) {
-						headers['content-length'] = String(uploadBodySize);
+						headers['Content-Length'] = String(uploadBodySize);
 					}
 				}
 			}
@@ -1967,7 +1967,7 @@ export default class Request extends Duplex implements RequestEvents<Request> {
 			this._unlockWrite();
 		}
 
-		this[kBodySize] = Number(headers['content-length']) || undefined;
+		this[kBodySize] = Number(headers['Content-Length']) || undefined;
 	}
 
 	async _onResponseBase(response: IncomingMessageWithTimings): Promise<void> {
